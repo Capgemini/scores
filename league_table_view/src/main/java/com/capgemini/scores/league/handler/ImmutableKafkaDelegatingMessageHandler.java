@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.kafka.support.KafkaHeaders;
 import org.springframework.messaging.Message;
@@ -40,7 +41,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class ImmutableKafkaDelegatingMessageHandler implements MultiTopicMessageHandler {
 
-    private Map<String, TopicMessageHandler> handlers = new HashMap<String, TopicMessageHandler>();
+    private static final Logger LOG = Logger.getLogger(ImmutableKafkaDelegatingMessageHandler.class);
+    
+    private Map<String, MessageHandler> handlers = new HashMap<String, MessageHandler>();
     
     @Autowired
     public ImmutableKafkaDelegatingMessageHandler(TopicMessageHandler[] handlers) {
@@ -50,7 +53,14 @@ public class ImmutableKafkaDelegatingMessageHandler implements MultiTopicMessage
     }
     @Override
     public void handleMessage(Message<?> message) throws MessagingException {
-        getMessageHandler(extractTopic(message)).handleMessage(message);
+        final String topic = extractTopic(message);
+        final MessageHandler handler = getMessageHandler(topic);
+                
+        if (handler != null) {
+            handler.handleMessage(message);
+        } else {
+            LOG.warn("No handler registered for topic: " + topic);
+        }
     }
     
     @Override

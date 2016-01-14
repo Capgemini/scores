@@ -17,10 +17,11 @@
 package com.capgemini.scores.league;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 /**
- * Encapsulares Kafka instance configuration properties.
+ * Encapsulates Kafka instance configuration properties.
  * 
  * @author craigwilliams84
  *
@@ -37,7 +38,7 @@ public class KafkaConfiguration {
     KafkaConfiguration() {
     }
 
-    public KafkaConfiguration(String topic, String brokerAddress, String zookeeperAddress) {
+    public KafkaConfiguration(String brokerAddress, String zookeeperAddress) {
         this.brokerAddress = brokerAddress;
         this.zookeeperAddress = zookeeperAddress;
     }

@@ -31,7 +31,12 @@ dependencies {
         exclude module : "slf4j-log4j12"
     }
     
-    testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    
+    testCompile("info.batey.kafka:kafka-unit:0.2") {
+		exclude group : "org.apache.kafka"
+		exclude group : "org.apache.zookeeper"
+	}
 }
 
 task wrapper(type: Wrapper) {

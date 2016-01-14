@@ -14,33 +14,36 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league.handler;
+package com.capgemini.scores.league;
 
-import org.apache.log4j.Logger;
-import org.springframework.context.annotation.Profile;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
-import org.springframework.stereotype.Component;
 
-import com.capgemini.scores.league.Topics;
+import com.capgemini.scores.league.handler.TopicMessageHandler;
 
 /**
- * A message handler that handles messages sent to the matchResult topic.
+ * A stub message handler for matchResult messages.
+ * 
+ * Allows the ability to be able to check what messages have been handled.
  * 
  * @author craigwilliams84
  *
  */
-@Component
-@Profile("default")
-public class MatchResultMessageHandler implements TopicMessageHandler {
-
-    private static final Logger LOG = Logger.getLogger(MatchResultMessageHandler.class);
+public class StubMatchResultMessageHandler implements TopicMessageHandler{
+    
+    private List<Message<?>> handledMessages = new ArrayList<Message<?>>();
     
     @Override
     public void handleMessage(Message<?> message) throws MessagingException {
-        //TODO
-        LOG.info("Message received for topic " + Topics.MATCH_RESULT + ": " + message);
+        handledMessages.add(message);
         
+    }
+    
+    public List<Message<?>> getHandledMessages() {
+        return handledMessages;
     }
 
     @Override

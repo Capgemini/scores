@@ -50,11 +50,11 @@ public class KafkaConsumerConfiguration {
     
     @Bean
     public ConnectionFactory kafkaBrokerConnectionFactory() throws Exception {
-        return new DefaultConnectionFactory(brokerConfiguration());
+        return new DefaultConnectionFactory(kafkaBrokerConfiguration());
     }
 
     @Bean
-    public org.springframework.integration.kafka.core.Configuration brokerConfiguration() {
+    public org.springframework.integration.kafka.core.Configuration kafkaBrokerConfiguration() {
         BrokerAddressListConfiguration configuration = new BrokerAddressListConfiguration(
                 BrokerAddress.fromAddress(config.getBrokerAddress()));
         configuration.setSocketTimeout(500);
@@ -62,7 +62,7 @@ public class KafkaConsumerConfiguration {
     }
     
     @Bean
-    public KafkaMessageListenerContainer container() throws Exception {
+    public KafkaMessageListenerContainer kafkaContainer() throws Exception {
         final Set<String> supportedTopics = delegatingMessageHandler.getTopics();
         final KafkaMessageListenerContainer kafkaMessageListenerContainer = new KafkaMessageListenerContainer(
                 kafkaBrokerConnectionFactory(), supportedTopics.toArray(new String[supportedTopics.size()]));
@@ -72,18 +72,18 @@ public class KafkaConsumerConfiguration {
     }
 
     @Bean
-    public KafkaMessageDrivenChannelAdapter adapter(KafkaMessageListenerContainer container) {
+    public KafkaMessageDrivenChannelAdapter kafkaAdapter(KafkaMessageListenerContainer container) {
         KafkaMessageDrivenChannelAdapter kafkaMessageDrivenChannelAdapter =
                 new KafkaMessageDrivenChannelAdapter(container);
         StringDecoder decoder = new StringDecoder();
         kafkaMessageDrivenChannelAdapter.setKeyDecoder(decoder);
         kafkaMessageDrivenChannelAdapter.setPayloadDecoder(decoder);
-        kafkaMessageDrivenChannelAdapter.setOutputChannel(received());
+        kafkaMessageDrivenChannelAdapter.setOutputChannel(kafkaChannel());
         return kafkaMessageDrivenChannelAdapter;
     }
     
     @Bean
-    public MessageChannel received() {
+    public MessageChannel kafkaChannel() {
         final PublishSubscribeChannel channel = new PublishSubscribeChannel();
         channel.subscribe(delegatingMessageHandler);
         

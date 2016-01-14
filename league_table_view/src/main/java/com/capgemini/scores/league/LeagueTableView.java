@@ -30,11 +30,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @SpringBootApplication
 @Import(KafkaConsumerConfiguration.class)
-public class LeagleTableView {
+public class LeagueTableView {
 
     public static void main(String[] args) {
         
-        SpringApplication.run(LeagleTableView.class, args);
+        SpringApplication.run(LeagueTableView.class, args);
     }
 
 }
