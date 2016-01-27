@@ -38,11 +38,6 @@ public class KafkaConfiguration {
     KafkaConfiguration() {
     }
 
-    public KafkaConfiguration(String brokerAddress, String zookeeperAddress) {
-        this.brokerAddress = brokerAddress;
-        this.zookeeperAddress = zookeeperAddress;
-    }
-
     public String getBrokerAddress() {
         return brokerAddress;
     }

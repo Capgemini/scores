@@ -28,7 +28,10 @@ import org.springframework.integration.kafka.core.ConnectionFactory;
 import org.springframework.integration.kafka.core.DefaultConnectionFactory;
 import org.springframework.integration.kafka.inbound.KafkaMessageDrivenChannelAdapter;
 import org.springframework.integration.kafka.listener.KafkaMessageListenerContainer;
+import org.springframework.integration.kafka.listener.KafkaTopicOffsetManager;
+import org.springframework.integration.kafka.listener.OffsetManager;
 import org.springframework.integration.kafka.serializer.common.StringDecoder;
+import org.springframework.integration.kafka.support.ZookeeperConnect;
 import org.springframework.messaging.MessageChannel;
 
 import com.capgemini.scores.league.handler.MultiTopicMessageHandler;
@@ -66,13 +69,14 @@ public class KafkaConsumerConfiguration {
         final Set<String> supportedTopics = delegatingMessageHandler.getTopics();
         final KafkaMessageListenerContainer kafkaMessageListenerContainer = new KafkaMessageListenerContainer(
                 kafkaBrokerConnectionFactory(), supportedTopics.toArray(new String[supportedTopics.size()]));
-        kafkaMessageListenerContainer.setMaxFetch(100);
+        //kafkaMessageListenerContainer.setOffsetManager(offsetManager);
+        kafkaMessageListenerContainer.setMaxFetch(300 * 1024);
         kafkaMessageListenerContainer.setConcurrency(1);
         return kafkaMessageListenerContainer;
     }
 
     @Bean
-    public KafkaMessageDrivenChannelAdapter kafkaAdapter(KafkaMessageListenerContainer container) {
+    public KafkaMessageDrivenChannelAdapter kafkaAdapter(KafkaMessageListenerContainer container) throws Exception {
         KafkaMessageDrivenChannelAdapter kafkaMessageDrivenChannelAdapter =
                 new KafkaMessageDrivenChannelAdapter(container);
         StringDecoder decoder = new StringDecoder();
@@ -89,4 +93,9 @@ public class KafkaConsumerConfiguration {
         
         return channel;
     }
+    
+//    @Bean
+//    public OffsetManager offsetManager() {
+//        return new KafkaTopicOffsetManager(new ZookeeperConnect(config.getZookeeperAddress()), "si-offsets");
+//    }
 }

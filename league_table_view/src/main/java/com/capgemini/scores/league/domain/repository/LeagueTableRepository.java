@@ -14,15 +14,18 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.domain.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.capgemini.scores.league.domain.LeagueTable;
 
 /**
- * Topic constants.
+ * League table MongoDB repository.
  * 
  * @author craigwilliams84
  *
  */
-public class Topics {
+public interface LeagueTableRepository extends MongoRepository<LeagueTable, String> {
     
-    public static final String MATCH_RESULT = "matchResult";
 }

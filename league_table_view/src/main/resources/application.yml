@@ -3,3 +3,12 @@ kafka:
     address: localhost:9092
   zookeeper:
     connect: localhost:2181
+    
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017
+      database: leagues
+      
+capgemini:
+  createdummydata: true

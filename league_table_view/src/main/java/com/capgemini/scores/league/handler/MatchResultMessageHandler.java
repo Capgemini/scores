@@ -17,12 +17,15 @@
 package com.capgemini.scores.league.handler;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessagingException;
 import org.springframework.stereotype.Component;
 
+import com.capgemini.scores.league.LeagueTableUpdater;
 import com.capgemini.scores.league.Topics;
+import com.capgemini.scores.league.domain.MatchResult;
 
 /**
  * A message handler that handles messages sent to the matchResult topic.
@@ -30,17 +33,31 @@ import com.capgemini.scores.league.Topics;
  * @author craigwilliams84
  *
  */
+//TODO Decoding should be handled at a lower level, not here, but will wait until the kafka
+//frameworky stuff is hardened before moving.
 @Component
 @Profile("default")
 public class MatchResultMessageHandler implements TopicMessageHandler {
 
     private static final Logger LOG = Logger.getLogger(MatchResultMessageHandler.class);
     
+    private MatchResultJSONPayloadDecoder decoder;
+    
+    private LeagueTableUpdater updater;
+    
+    @Autowired
+    public MatchResultMessageHandler(MatchResultJSONPayloadDecoder decoder, LeagueTableUpdater updater) {
+        this.decoder = decoder;
+        this.updater = updater;
+    }
+    
     @Override
     public void handleMessage(Message<?> message) throws MessagingException {
-        //TODO
         LOG.info("Message received for topic " + Topics.MATCH_RESULT + ": " + message);
         
+        final MatchResult result = decoder.fromBytes(((String)message.getPayload()).getBytes());
+        
+        updateLeagueTable(result);
     }
 
     @Override
@@ -48,4 +65,7 @@ public class MatchResultMessageHandler implements TopicMessageHandler {
         return Topics.MATCH_RESULT;
     }
 
+    private void updateLeagueTable(MatchResult result) {
+        updater.updateTable(result);
+    }
 }

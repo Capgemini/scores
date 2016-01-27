@@ -16,13 +16,20 @@
 
 package com.capgemini.scores.league;
 
+import com.capgemini.scores.league.domain.MatchResult;
+
 /**
- * Topic constants.
+ * Updates a league table.
  * 
  * @author craigwilliams84
  *
  */
-public class Topics {
+public interface LeagueTableUpdater {
     
-    public static final String MATCH_RESULT = "matchResult";
+    /**
+     * Update the league table based on the provided result.
+     * 
+     * @param result The result.
+     */
+    void updateTable(MatchResult result);
 }

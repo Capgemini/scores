@@ -14,15 +14,47 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.domain;
 
 /**
- * Topic constants.
+ * Match result domain object.
  * 
  * @author craigwilliams84
  *
  */
-public class Topics {
+public class MatchResult {
     
-    public static final String MATCH_RESULT = "matchResult";
+    String competitionId;
+    
+    String homeTeam;
+    
+    int homeScore;
+    
+    String awayTeam;
+    
+    int awayScore;
+    
+    public MatchResult() {
+        
+    }
+    
+    public String getCompetitionId() {
+        return competitionId;
+    }
+
+    public String getHomeTeam() {
+        return homeTeam;
+    }
+
+    public int getHomeScore() {
+        return homeScore;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
+    }
+
+    public int getAwayScore() {
+        return awayScore;
+    }
 }

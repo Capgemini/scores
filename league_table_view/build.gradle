@@ -31,12 +31,21 @@ dependencies {
         exclude module : "slf4j-log4j12"
     }
     
+    compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    
+    compile("com.google.code.gson:gson:2.5")
+    
     testCompile("org.springframework.boot:spring-boot-starter-test")
     
     testCompile("info.batey.kafka:kafka-unit:0.2") {
 		exclude group : "org.apache.kafka"
 		exclude group : "org.apache.zookeeper"
 	}
+    
+    //1.6.5
+    testCompile("com.lordofthejars:nosqlunit-mongodb:0.8.1")
+    
+    testCompile("ch.qos.logback:logback-classic:1.1.1")
 }
 
 task wrapper(type: Wrapper) {

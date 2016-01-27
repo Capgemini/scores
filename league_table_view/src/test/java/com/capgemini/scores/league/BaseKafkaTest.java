@@ -32,9 +32,9 @@ import org.junit.BeforeClass;
  */
 public class BaseKafkaTest {
     
-    public static final int BROKER_PORT = 9092;
+    public static final int BROKER_PORT = 9093;
     
-    public static final int ZOOKEEPER_PORT = 2182;
+    public static final int ZOOKEEPER_PORT = 2183;
     
     private static KafkaUnit kafka;
     

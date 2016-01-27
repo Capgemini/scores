@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.integration;
 
 import static org.junit.Assert.assertEquals;
 
@@ -27,6 +27,11 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.capgemini.scores.league.BaseKafkaTest;
+import com.capgemini.scores.league.EndToEndTestConfiguration;
+import com.capgemini.scores.league.LeagueTableView;
+import com.capgemini.scores.league.StubMatchResultMessageHandler;
+
 /**
  * Tests the receiving of kafka messages.
  * 
@@ -37,8 +42,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringApplicationConfiguration({LeagueTableView.class, EndToEndTestConfiguration.class})
 @IntegrationTest({"kafka.address=localhost:" + BaseKafkaTest.BROKER_PORT, 
     "zookeeper.address=localhost:" + BaseKafkaTest.ZOOKEEPER_PORT})
-@ActiveProfiles("endToEndTest")
-public class TestEndToEndReceivingMessages extends BaseKafkaTest {
+@ActiveProfiles("stubHandler")
+public class TestReceivingMessages extends BaseKafkaTest {
 
     private static final String MESSAGE_VALUE = "Testing123";
     

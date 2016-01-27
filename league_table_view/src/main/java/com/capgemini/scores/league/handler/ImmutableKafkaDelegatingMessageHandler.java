@@ -51,6 +51,7 @@ public class ImmutableKafkaDelegatingMessageHandler implements MultiTopicMessage
             registerHandler(handler);
         }
     }
+    
     @Override
     public void handleMessage(Message<?> message) throws MessagingException {
         final String topic = extractTopic(message);

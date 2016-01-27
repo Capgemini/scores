@@ -29,7 +29,7 @@ import com.capgemini.scores.league.handler.TopicMessageHandler;
  *
  */
 @Configuration
-@Profile("endToEndTest")
+@Profile("stubHandler")
 public class EndToEndTestConfiguration {
     
     @Bean
