@@ -22,6 +22,8 @@ import info.batey.kafka.unit.KafkaUnit;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
+import com.capgemini.scores.league.Topics;
+
 /**
  * Base class for tests that require a kafka instance to be running.
  * 

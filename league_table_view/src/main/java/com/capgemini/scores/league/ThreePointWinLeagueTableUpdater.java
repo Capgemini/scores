@@ -20,6 +20,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
+import com.capgemini.gregor.KafkaConsumer;
+import com.capgemini.gregor.PayloadContent;
 import com.capgemini.scores.league.domain.LeagueTable;
 import com.capgemini.scores.league.domain.LeagueTableEntry;
 import com.capgemini.scores.league.domain.LeagueTeamStatistics;

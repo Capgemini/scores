@@ -40,6 +40,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capgemini.gregor.EnableKafkaConsumers;
 import com.capgemini.scores.league.domain.LeagueTable;
 import com.capgemini.scores.league.domain.repository.LeagueTableRepository;
 
@@ -51,7 +52,8 @@ import com.capgemini.scores.league.domain.repository.LeagueTableRepository;
  *
  */
 @SpringBootApplication
-@Import({MongoConfiguration.class, KafkaConsumerConfiguration.class})
+@Import({MongoConfiguration.class})
+@EnableKafkaConsumers
 public class LeagueTableView {
 
     public static void main(String[] args) {      
