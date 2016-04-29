@@ -72,7 +72,10 @@ public class DummyLeagueDataConfiguration {
                 final LeagueTableEntry entry1 = new LeagueTableEntry(TEAM_ONE, 0, new LeagueTeamStatistics());
                 final LeagueTableEntry entry2 = new LeagueTableEntry(TEAM_TWO, 0, new LeagueTeamStatistics());
                 final LeagueTable table = new LeagueTable(LEAGUE_NAME, Arrays.asList(entry1, entry2));
-                repository.insert(table);
+
+                if (!repository.exists(table.getName())) {
+                    repository.insert(table);
+                }
             }
             
             return bean;

@@ -40,7 +40,7 @@ import com.mongodb.Mongo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration({LeagueTableView.class})
-@IntegrationTest({"kafka.address=localhost:" + BaseKafkaTest.BROKER_PORT, 
+@IntegrationTest({"kafka.addresses=localhost:" + BaseKafkaTest.BROKER_PORT,
     "zookeeper.address=localhost:" + BaseKafkaTest.ZOOKEEPER_PORT})
 @Import(MongoTestConfiguration.class)
 public class TestProcessingMatchResults extends BaseKafkaTest {
