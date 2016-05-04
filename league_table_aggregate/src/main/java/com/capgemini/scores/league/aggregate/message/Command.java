@@ -1,4 +1,4 @@
-package com.capgemini.scores.league.message;
+package com.capgemini.scores.league.aggregate.message;
 
 public interface Command<T> extends PayloadMessage<T>{
 }

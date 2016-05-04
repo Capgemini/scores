@@ -1,8 +1,8 @@
-package com.capgemini.scores.league.repository;
+package com.capgemini.scores.league.aggregate.repository;
 
 import java.util.List;
 
-import com.capgemini.scores.league.domain.LeagueTable;
+import com.capgemini.scores.league.aggregate.domain.LeagueTable;
 
 public interface LeagueTableRepository {
     List<LeagueTable> getLeagueTables();

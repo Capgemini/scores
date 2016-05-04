@@ -1,6 +1,6 @@
-package com.capgemini.scores.league.message;
+package com.capgemini.scores.league.aggregate.message;
 
-import com.capgemini.scores.league.domain.MatchResult;
+import com.capgemini.scores.league.aggregate.domain.MatchResult;
 
 public class MatchResultEvent implements Event<MatchResult> {
 

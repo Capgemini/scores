@@ -1,16 +1,16 @@
-package com.capgemini.scores.league.domain;
+package com.capgemini.scores.league.aggregate.domain;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.capgemini.scores.league.exception.TeamNotFoundException;
-import com.capgemini.scores.league.message.CreateLeagueTableCommand;
-import com.capgemini.scores.league.message.Event;
-import com.capgemini.scores.league.message.LeagueTableCreatedEvent;
-import com.capgemini.scores.league.message.MatchResultCommand;
-import com.capgemini.scores.league.message.MatchResultEvent;
+import com.capgemini.scores.league.aggregate.exception.TeamNotFoundException;
+import com.capgemini.scores.league.aggregate.message.CreateLeagueTableCommand;
+import com.capgemini.scores.league.aggregate.message.Event;
+import com.capgemini.scores.league.aggregate.message.LeagueTableCreatedEvent;
+import com.capgemini.scores.league.aggregate.message.MatchResultCommand;
+import com.capgemini.scores.league.aggregate.message.MatchResultEvent;
 
 public class LeagueTable extends ReflectiveAggregate {
 

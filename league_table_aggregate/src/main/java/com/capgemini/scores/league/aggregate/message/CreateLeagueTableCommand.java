@@ -1,6 +1,6 @@
-package com.capgemini.scores.league.message;
+package com.capgemini.scores.league.aggregate.message;
 
-import com.capgemini.scores.league.domain.LeagueTable;
+import com.capgemini.scores.league.aggregate.domain.LeagueTable;
 
 public class CreateLeagueTableCommand implements Command<LeagueTable> {
 

@@ -1,4 +1,4 @@
-package com.capgemini.scores.league.exception;
+package com.capgemini.scores.league.aggregate.exception;
 
 public class TeamNotFoundException extends RuntimeException {
 

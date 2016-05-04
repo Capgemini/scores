@@ -1,15 +1,13 @@
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.aggregate;
 
+import com.capgemini.scores.league.aggregate.message.MatchResultCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.capgemini.gregor.KafkaConsumer;
 import com.capgemini.gregor.PayloadContent;
-import com.capgemini.scores.league.domain.LeagueTable;
-import com.capgemini.scores.league.domain.MatchResult;
-import com.capgemini.scores.league.message.CreateLeagueTableCommand;
-import com.capgemini.scores.league.message.MatchResultCommand;
-import com.capgemini.scores.league.service.LeagueTableService;
+import com.capgemini.scores.league.aggregate.message.CreateLeagueTableCommand;
+import com.capgemini.scores.league.aggregate.service.LeagueTableService;
 
 /**
  * Consumes match result messages from a kafka broker.
