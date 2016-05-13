@@ -29,7 +29,7 @@ public class KafkaCommandConsumer {
     
     @KafkaConsumer(topic = Topics.MATCH_RESULT_COMMAND, payloadContent = PayloadContent.JSON)
     public void onMatchResultCommand(MatchResultCommand command) {
-        
+        System.out.println("**** Received match result command");
         leagueTableService.onMatchResultCommand(command);
     }
     

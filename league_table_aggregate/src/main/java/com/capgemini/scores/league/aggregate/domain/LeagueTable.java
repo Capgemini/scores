@@ -80,4 +80,25 @@ public class LeagueTable extends ReflectiveAggregate {
     private void validateLeagueTable(LeagueTable leagueTable) {
         //Nothing to do here currently
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LeagueTable that = (LeagueTable) o;
+
+        if (getId() != null ? !getId().equals(that.getId()) : that.getId() != null) return false;
+        if (getTeams() != null ? !getTeams().equals(that.getTeams()) : that.getTeams() != null) return false;
+        return getResults() != null ? getResults().equals(that.getResults()) : that.getResults() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId() != null ? getId().hashCode() : 0;
+        result = 31 * result + (getTeams() != null ? getTeams().hashCode() : 0);
+        result = 31 * result + (getResults() != null ? getResults().hashCode() : 0);
+        return result;
+    }
 }

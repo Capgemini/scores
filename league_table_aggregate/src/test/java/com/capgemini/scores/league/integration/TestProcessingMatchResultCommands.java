@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.HashSet;
@@ -31,12 +32,13 @@ public class TestProcessingMatchResultCommands extends BaseKafkaTest {
     private LeagueTableRepository repository;
 
     @Test
+    @DirtiesContext
     public void testProcessMatchResultCommand() throws TimeoutException {
-        final String matchResultCommandJson = "{\"matchResult\":{\"competitionId\":\"Test League\",\"homeTeam\":\"Arsenal\",\"homeScore\":1,\"awayTeam\":\"Tottenham\",\"awayScore\":5}}";
+        final String matchResultCommandJson = "{\"matchResult\":{\"competitionId\":\"Test League1\",\"homeTeam\":\"Arsenal\",\"homeScore\":1,\"awayTeam\":\"Tottenham\",\"awayScore\":5}}";
 
         final LeagueTable table = new LeagueTable();
 
-        table.setId("Test League");
+        table.setId("Test League1");
 
         final Set<String> teams = new HashSet<String>();
         teams.add("Tottenham");
@@ -46,16 +48,17 @@ public class TestProcessingMatchResultCommands extends BaseKafkaTest {
 
         repository.save(table);
 
+        System.out.println("***** Sending match result");
         sendMessage(Topics.MATCH_RESULT_COMMAND, matchResultCommandJson);
 
         pause();
 
-        final LeagueTable modifiedLeagueTable = repository.getLeagueTable("Test League");
+        final LeagueTable modifiedLeagueTable = repository.getLeagueTable("Test League1");
         assertEquals("League table does not have a result associated with it", 1, modifiedLeagueTable.getResults().size());
 
         final MatchResult matchResult = modifiedLeagueTable.getResults().iterator().next();
 
-        assertEquals("Result competition name incorrect", "Test League", matchResult.getCompetitionId());
+        assertEquals("Result competition name incorrect", "Test League1", matchResult.getCompetitionId());
         assertEquals("Result home team incorrect", "Arsenal", matchResult.getHomeTeam());
         assertEquals("Result home score incorrect", 1, matchResult.getHomeScore());
         assertEquals("Result away team incorrect", "Tottenham", matchResult.getAwayTeam());
@@ -75,10 +78,5 @@ public class TestProcessingMatchResultCommands extends BaseKafkaTest {
 
         final Gson gson = new Gson();
         return gson.fromJson(message, MatchResultEvent.class);
-    }
-
-    //TODO
-    public void testProcessCreateLeagueCommand() {
-
     }
 }

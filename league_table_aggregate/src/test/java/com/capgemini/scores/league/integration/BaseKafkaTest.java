@@ -49,11 +49,14 @@ public class BaseKafkaTest {
         kafka.startup();
         kafka.createTopic(Topics.MATCH_RESULT_COMMAND);
         kafka.createTopic(Topics.CREATE_LEAGUE_TABLE_COMMAND);
+        kafka.createTopic(Topics.MATCH_RESULT_EVENT);
+        kafka.createTopic(Topics.CREATE_LEAGUE_TABLE_EVENT);
     }
     
     @AfterClass
     public static void shutdownKafka() {
         kafka.shutdown();
+        sleep(DEFAULT_WAIT_TIME);
     }
     
     protected void createTopic(String topicName) {
@@ -71,9 +74,14 @@ public class BaseKafkaTest {
     }
 
     protected void pause() {
+        sleep(DEFAULT_WAIT_TIME);
+    }
+
+    private static void sleep(long time) {
         try {
-            Thread.sleep(DEFAULT_WAIT_TIME);
+            Thread.sleep(time);
         } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
