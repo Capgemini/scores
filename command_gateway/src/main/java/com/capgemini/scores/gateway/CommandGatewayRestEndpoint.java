@@ -17,13 +17,12 @@
 package com.capgemini.scores.gateway;
 
 import com.capgemini.scores.gateway.domain.LeagueTable;
+import com.capgemini.scores.gateway.domain.MatchResult;
 import com.capgemini.scores.gateway.integration.CommandPublisher;
 import com.capgemini.scores.gateway.message.CreateLeagueTableCommand;
+import com.capgemini.scores.gateway.message.MatchResultCommand;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * REST request command endpoint
@@ -37,9 +36,17 @@ public class CommandGatewayRestEndpoint {
     public CommandGatewayRestEndpoint(CommandPublisher commandPublisher) {
         this.commandPublisher = commandPublisher;
     }
+
     @RequestMapping(path="/league", method=RequestMethod.PUT)
     public void createLeague(@RequestBody LeagueTable table) {
         final CreateLeagueTableCommand command = new CreateLeagueTableCommand(table);
         commandPublisher.publishCreateLeagueTableCommand(command);
+    }
+
+    @RequestMapping(path="/league/{leagueName}/result", method=RequestMethod.PUT)
+    public void createMatchResult(@RequestBody MatchResult result, @PathVariable String leagueName) {
+        result.setCompetitionId(leagueName);
+        final MatchResultCommand command = new MatchResultCommand(result);
+        commandPublisher.publishMatchResultCommand(command);
     }
 }

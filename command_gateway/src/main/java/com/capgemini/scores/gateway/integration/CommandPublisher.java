@@ -21,6 +21,7 @@ import com.capgemini.gregor.KafkaProducer;
 import com.capgemini.gregor.serializer.JSONSerializer;
 import com.capgemini.scores.gateway.Topics;
 import com.capgemini.scores.gateway.message.CreateLeagueTableCommand;
+import com.capgemini.scores.gateway.message.MatchResultCommand;
 
 /**
  * Publishes commands to the wider system
@@ -30,4 +31,7 @@ public interface CommandPublisher {
 
     @KafkaProducer(topic = Topics.CREATE_LEAGUE_TABLE_COMMAND, payloadSerializer = JSONSerializer.class)
     void publishCreateLeagueTableCommand(CreateLeagueTableCommand command);
+
+    @KafkaProducer(topic = Topics.MATCH_RESULT_COMMAND, payloadSerializer = JSONSerializer.class)
+    void publishMatchResultCommand(MatchResultCommand command);
 }
