@@ -28,6 +28,10 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.RestTemplate;
 
@@ -51,7 +55,10 @@ public class RestMatchResultTest extends BaseKafkaTest {
 
         final MatchResult result = new MatchResult(null, "Tottenham Hotspur", 4, "Arsenal", 1);
         final RestTemplate restTemplate = new RestTemplate();
-        restTemplate.put(uri, result);
+        final ResponseEntity<Void> response = restTemplate.exchange(uri,
+                HttpMethod.PUT, new HttpEntity<MatchResult>(result), Void.class);
+
+        assertEquals("Incorrect response code", HttpStatus.ACCEPTED, response.getStatusCode());
 
         final List<String> messages = readMessages(Topics.MATCH_RESULT_COMMAND, 1);
 

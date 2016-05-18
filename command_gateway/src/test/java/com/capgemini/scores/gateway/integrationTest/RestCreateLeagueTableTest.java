@@ -19,6 +19,7 @@ package com.capgemini.scores.gateway.integrationTest;
 import com.capgemini.scores.gateway.CommandGatewayApplication;
 import com.capgemini.scores.gateway.Topics;
 import com.capgemini.scores.gateway.domain.LeagueTable;
+import com.capgemini.scores.gateway.domain.MatchResult;
 import com.capgemini.scores.gateway.message.CreateLeagueTableCommand;
 import com.google.gson.Gson;
 import org.junit.Test;
@@ -26,6 +27,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.IntegrationTest;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.boot.test.WebIntegrationTest;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
@@ -48,7 +53,11 @@ public class RestCreateLeagueTableTest extends BaseKafkaTest {
         final LeagueTable leagueTable = new LeagueTable("Test League",
                 new HashSet<String>(Arrays.asList(new String[]{"Tottenham Hotspur", "Arsenal"})));
         final RestTemplate restTemplate = new RestTemplate();
-        restTemplate.put(uri, leagueTable);
+
+        final ResponseEntity<Void> response = restTemplate.exchange(uri,
+                HttpMethod.PUT, new HttpEntity<LeagueTable>(leagueTable), Void.class);
+
+        assertEquals("Incorrect response code", HttpStatus.ACCEPTED, response.getStatusCode());
 
         final List<String> messages = readMessages(Topics.CREATE_LEAGUE_TABLE_COMMAND, 1);
 
