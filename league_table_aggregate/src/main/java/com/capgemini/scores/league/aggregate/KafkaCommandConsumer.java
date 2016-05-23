@@ -1,5 +1,6 @@
 package com.capgemini.scores.league.aggregate;
 
+import com.capgemini.scores.Topics;
 import com.capgemini.scores.league.aggregate.message.MatchResultCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

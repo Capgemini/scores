@@ -1,7 +1,7 @@
 package com.capgemini.scores.league.integration;
 
 import com.capgemini.scores.league.aggregate.LeagueTableAggregateApplication;
-import com.capgemini.scores.league.aggregate.Topics;
+import com.capgemini.scores.Topics;
 import com.capgemini.scores.league.aggregate.domain.LeagueTable;
 import com.capgemini.scores.league.aggregate.domain.MatchResult;
 import com.capgemini.scores.league.aggregate.message.MatchResultEvent;

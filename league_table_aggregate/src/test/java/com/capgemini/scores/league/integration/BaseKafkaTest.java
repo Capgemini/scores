@@ -16,7 +16,7 @@
 
 package com.capgemini.scores.league.integration;
 
-import com.capgemini.scores.league.aggregate.Topics;
+import com.capgemini.scores.Topics;
 import info.batey.kafka.unit.KafkaUnit;
 import kafka.producer.KeyedMessage;
 import org.junit.AfterClass;

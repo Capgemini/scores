@@ -1,6 +1,6 @@
 package com.capgemini.scores.league.aggregate.service;
 
-import com.capgemini.scores.league.aggregate.message.Event;
+import com.capgemini.scores.message.Event;
 
 /**
  * A fine grained event publisher that publishes a single event for a specific event class.

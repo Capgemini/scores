@@ -1,6 +1,6 @@
 package com.capgemini.scores.league.aggregate.service;
 
-import com.capgemini.scores.league.aggregate.message.Event;
+import com.capgemini.scores.message.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

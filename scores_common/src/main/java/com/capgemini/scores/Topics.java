@@ -1,4 +1,4 @@
-package com.capgemini.scores.league.aggregate;
+package com.capgemini.scores;
 
 public class Topics {
     

@@ -16,8 +16,8 @@
 
 package com.capgemini.scores.gateway.integrationTest;
 
+import com.capgemini.scores.Topics;
 import com.capgemini.scores.gateway.CommandGatewayApplication;
-import com.capgemini.scores.gateway.Topics;
 import com.capgemini.scores.gateway.domain.LeagueTable;
 import com.capgemini.scores.gateway.domain.MatchResult;
 import com.capgemini.scores.gateway.message.CreateLeagueTableCommand;

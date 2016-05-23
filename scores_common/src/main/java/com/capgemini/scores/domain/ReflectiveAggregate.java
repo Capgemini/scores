@@ -1,11 +1,11 @@
-package com.capgemini.scores.league.aggregate.domain;
+package com.capgemini.scores.domain;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import com.capgemini.scores.league.aggregate.message.Command;
-import com.capgemini.scores.league.aggregate.message.Event;
+import com.capgemini.scores.message.Command;
+import com.capgemini.scores.message.Event;
 
 public class ReflectiveAggregate implements Aggregate {
     
@@ -14,6 +14,7 @@ public class ReflectiveAggregate implements Aggregate {
         final Method commandHandlerMethod = getMethodWithCommandTypeAsArgument(command);
 
         try {
+            commandHandlerMethod.setAccessible(true);
             return (List<Event>) commandHandlerMethod.invoke(this, command);
         } catch (IllegalAccessException e) {
             e.printStackTrace();

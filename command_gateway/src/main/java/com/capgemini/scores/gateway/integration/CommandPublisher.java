@@ -19,7 +19,7 @@ package com.capgemini.scores.gateway.integration;
 import com.capgemini.gregor.KafkaClient;
 import com.capgemini.gregor.KafkaProducer;
 import com.capgemini.gregor.serializer.JSONSerializer;
-import com.capgemini.scores.gateway.Topics;
+import com.capgemini.scores.Topics;
 import com.capgemini.scores.gateway.message.CreateLeagueTableCommand;
 import com.capgemini.scores.gateway.message.MatchResultCommand;
 

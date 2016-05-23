@@ -1,7 +1,7 @@
 package com.capgemini.scores.league.aggregate.service;
 
-import com.capgemini.scores.league.aggregate.message.Command;
-import com.capgemini.scores.league.aggregate.message.Event;
+import com.capgemini.scores.message.Command;
+import com.capgemini.scores.message.Event;
 import com.capgemini.scores.league.aggregate.message.MatchResultCommand;
 import com.capgemini.scores.league.aggregate.repository.LeagueTableRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -17,7 +17,7 @@
 package com.capgemini.scores.gateway.message;
 
 import com.capgemini.scores.gateway.domain.LeagueTable;
-import org.apache.zookeeper.Op;
+import com.capgemini.scores.message.Command;
 
 /**
  * A command instructing a league table to created

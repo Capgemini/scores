@@ -14,8 +14,27 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.gateway.message;
+package com.capgemini.scores.gateway;
 
-public interface PayloadMessage<T>  {
-    T getPayload();
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.capgemini.gregor.EnableKafkaConsumers;
+import com.capgemini.gregor.EnableKafkaProducers;
+
+/**
+ * A spring boot based gateway for scores queries.
+ *
+ * @author craigwilliams84
+ *
+ */
+@EnableKafkaConsumers
+@EnableKafkaProducers
+@SpringBootApplication
+public class QueryGatewayApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(QueryGatewayApplication.class, args);
+    }
+
 }

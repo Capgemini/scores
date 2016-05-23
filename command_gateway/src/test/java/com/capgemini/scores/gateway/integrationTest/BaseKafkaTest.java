@@ -16,7 +16,7 @@
 
 package com.capgemini.scores.gateway.integrationTest;
 
-import com.capgemini.scores.gateway.Topics;
+import com.capgemini.scores.Topics;
 import info.batey.kafka.unit.KafkaUnit;
 import kafka.producer.KeyedMessage;
 import org.junit.AfterClass;

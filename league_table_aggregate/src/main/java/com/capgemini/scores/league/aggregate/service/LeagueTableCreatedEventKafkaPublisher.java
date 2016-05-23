@@ -3,7 +3,7 @@ package com.capgemini.scores.league.aggregate.service;
 import com.capgemini.gregor.KafkaClient;
 import com.capgemini.gregor.KafkaProducer;
 import com.capgemini.gregor.serializer.JSONSerializer;
-import com.capgemini.scores.league.aggregate.Topics;
+import com.capgemini.scores.Topics;
 import com.capgemini.scores.league.aggregate.message.LeagueTableCreatedEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

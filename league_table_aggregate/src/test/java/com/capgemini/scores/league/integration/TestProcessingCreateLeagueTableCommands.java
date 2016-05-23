@@ -1,10 +1,9 @@
 package com.capgemini.scores.league.integration;
 
 import com.capgemini.scores.league.aggregate.LeagueTableAggregateApplication;
-import com.capgemini.scores.league.aggregate.Topics;
+import com.capgemini.scores.Topics;
 import com.capgemini.scores.league.aggregate.domain.LeagueTable;
 import com.capgemini.scores.league.aggregate.message.LeagueTableCreatedEvent;
-import com.capgemini.scores.league.aggregate.message.MatchResultEvent;
 import com.capgemini.scores.league.aggregate.repository.LeagueTableRepository;
 import com.google.gson.Gson;
 import org.junit.Test;
@@ -17,7 +16,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.Assert.assertEquals;

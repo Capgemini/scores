@@ -1,6 +1,7 @@
 package com.capgemini.scores.league.aggregate.message;
 
 import com.capgemini.scores.league.aggregate.domain.MatchResult;
+import com.capgemini.scores.message.Command;
 
 public class MatchResultCommand implements Command<MatchResult> {
 

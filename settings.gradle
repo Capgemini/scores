@@ -1,0 +1,5 @@
+include 'scores_common'
+include 'command_gateway'
+include 'query_gateway'
+include 'league_table_aggregate'
+include 'league_table_view'
