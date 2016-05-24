@@ -1,11 +1,12 @@
 package com.capgemini.scores.league;
 
+import com.capgemini.scores.Topics;
+import com.capgemini.scores.league.message.MatchResultEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.capgemini.gregor.KafkaConsumer;
 import com.capgemini.gregor.PayloadContent;
-import com.capgemini.scores.league.domain.MatchResult;
 
 /**
  * Consumes match result messages from a kafka broker.
@@ -16,17 +17,17 @@ import com.capgemini.scores.league.domain.MatchResult;
  *
  */
 @Component
-public class MatchResultConsumer {
+public class KafkaEventConsumer {
 
     LeagueTableUpdater leagueUpdater;
     
     @Autowired
-    public MatchResultConsumer(LeagueTableUpdater leagueUpdater) {
+    public KafkaEventConsumer(LeagueTableUpdater leagueUpdater) {
         this.leagueUpdater = leagueUpdater;
     }
     
-    @KafkaConsumer(topic = Topics.MATCH_RESULT, payloadContent = PayloadContent.JSON)
-    public void onMatchResult(MatchResult matchResult) {
-        leagueUpdater.updateTable(matchResult);
+    @KafkaConsumer(topic = Topics.MATCH_RESULT_EVENT, payloadContent = PayloadContent.JSON)
+    public void onMatchResultEvent(MatchResultEvent matchResultEvent) {
+        leagueUpdater.updateTable(matchResultEvent.getPayload());
     }
 }

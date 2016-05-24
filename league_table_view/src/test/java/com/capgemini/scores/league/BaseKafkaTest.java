@@ -16,13 +16,12 @@
 
 package com.capgemini.scores.league;
 
+import com.capgemini.scores.Topics;
 import kafka.producer.KeyedMessage;
 import info.batey.kafka.unit.KafkaUnit;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
-
-import com.capgemini.scores.league.Topics;
 
 /**
  * Base class for tests that require a kafka instance to be running.
@@ -44,7 +43,7 @@ public class BaseKafkaTest {
     public static void startKafka() {
         kafka = new KafkaUnit(ZOOKEEPER_PORT, BROKER_PORT);
         kafka.startup();
-        kafka.createTopic(Topics.MATCH_RESULT);
+        kafka.createTopic(Topics.MATCH_RESULT_EVENT);
     }
     
     @AfterClass

@@ -18,6 +18,7 @@ package com.capgemini.scores.league.integration;
 
 import static com.lordofthejars.nosqlunit.mongodb.MongoDbRule.MongoDbRuleBuilder.newMongoDbRule;
 
+import com.capgemini.scores.Topics;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,7 +32,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.capgemini.scores.league.BaseKafkaTest;
 import com.capgemini.scores.league.LeagueTableView;
 import com.capgemini.scores.league.MongoTestConfiguration;
-import com.capgemini.scores.league.Topics;
 import com.lordofthejars.nosqlunit.annotation.ShouldMatchDataSet;
 import com.lordofthejars.nosqlunit.annotation.UsingDataSet;
 import com.lordofthejars.nosqlunit.core.LoadStrategyEnum;
@@ -45,7 +45,7 @@ import com.mongodb.Mongo;
 @Import(MongoTestConfiguration.class)
 public class TestProcessingMatchResults extends BaseKafkaTest {
     
-    private static final String MESSAGE_VALUE = "{\"competitionId\": \"Test League\",\"homeTeam\": \"Tottenham Hotspur\",\"homeScore\": 5,\"awayTeam\": \"Arsenal\",\"awayScore\": 1}";
+    private static final String MESSAGE_VALUE = "{matchResult: {\"competitionId\": \"Test League\",\"homeTeam\": \"Tottenham Hotspur\",\"homeScore\": 5,\"awayTeam\": \"Arsenal\",\"awayScore\": 1}}";
     
     //Required by nosql-unit
     @Autowired 
@@ -62,7 +62,7 @@ public class TestProcessingMatchResults extends BaseKafkaTest {
     @ShouldMatchDataSet(location = "/league_spurs_win.json")
     public void testMessagesAreReceivedByHandler() throws InterruptedException {
         //Send a message
-        sendMessage(Topics.MATCH_RESULT, MESSAGE_VALUE);
+        sendMessage(Topics.MATCH_RESULT_EVENT, MESSAGE_VALUE);
         
         //Wait a few seconds for the message to be delivered
         Thread.sleep(3000);
