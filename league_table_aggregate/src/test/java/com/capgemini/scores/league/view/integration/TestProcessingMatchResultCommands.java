@@ -1,4 +1,4 @@
-package com.capgemini.scores.league.integration;
+package com.capgemini.scores.league.view.integration;
 
 import com.capgemini.scores.league.aggregate.LeagueTableAggregateApplication;
 import com.capgemini.scores.Topics;

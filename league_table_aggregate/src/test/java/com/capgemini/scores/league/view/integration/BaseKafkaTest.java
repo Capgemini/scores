@@ -14,14 +14,16 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.view.integration;
 
 import com.capgemini.scores.Topics;
-import kafka.producer.KeyedMessage;
 import info.batey.kafka.unit.KafkaUnit;
-
+import kafka.producer.KeyedMessage;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
+
+import java.util.List;
+import java.util.concurrent.TimeoutException;
 
 /**
  * Base class for tests that require a kafka instance to be running.
@@ -32,6 +34,8 @@ import org.junit.BeforeClass;
  *
  */
 public class BaseKafkaTest {
+
+    private static final Long DEFAULT_WAIT_TIME = 2000l;
     
     public static final int BROKER_PORT = 9093;
     
@@ -43,12 +47,16 @@ public class BaseKafkaTest {
     public static void startKafka() {
         kafka = new KafkaUnit(ZOOKEEPER_PORT, BROKER_PORT);
         kafka.startup();
+        kafka.createTopic(Topics.MATCH_RESULT_COMMAND);
+        kafka.createTopic(Topics.CREATE_LEAGUE_TABLE_COMMAND);
         kafka.createTopic(Topics.MATCH_RESULT_EVENT);
+        kafka.createTopic(Topics.CREATE_LEAGUE_TABLE_EVENT);
     }
     
     @AfterClass
     public static void shutdownKafka() {
         kafka.shutdown();
+        sleep(DEFAULT_WAIT_TIME);
     }
     
     protected void createTopic(String topicName) {
@@ -59,5 +67,22 @@ public class BaseKafkaTest {
         final KeyedMessage<String, String> message = new KeyedMessage<String, String>(topic, value);
         
         kafka.sendMessages(message);
+    }
+
+    protected List<String> readMessages(String topicName, int expectedMessages) throws TimeoutException {
+        return kafka.readMessages(topicName, expectedMessages);
+    }
+
+    protected void pause() {
+        sleep(DEFAULT_WAIT_TIME);
+    }
+
+    private static void sleep(long time) {
+        try {
+            Thread.sleep(time);
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }

@@ -14,47 +14,22 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league.domain;
+package com.capgemini.scores.league.view;
+
+import com.capgemini.scores.league.view.domain.MatchResult;
 
 /**
- * Match result domain object.
+ * Updates a league table.
  * 
  * @author craigwilliams84
  *
  */
-public class MatchResult {
+public interface LeagueTableUpdater {
     
-    String competitionId;
-    
-    String homeTeam;
-    
-    int homeScore;
-    
-    String awayTeam;
-    
-    int awayScore;
-    
-    public MatchResult() {
-        
-    }
-    
-    public String getCompetitionId() {
-        return competitionId;
-    }
-
-    public String getHomeTeam() {
-        return homeTeam;
-    }
-
-    public int getHomeScore() {
-        return homeScore;
-    }
-
-    public String getAwayTeam() {
-        return awayTeam;
-    }
-
-    public int getAwayScore() {
-        return awayScore;
-    }
+    /**
+     * Update the league table based on the provided result.
+     * 
+     * @param result The result.
+     */
+    void updateTable(MatchResult result);
 }

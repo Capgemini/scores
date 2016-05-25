@@ -14,22 +14,18 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.view.domain.repository;
 
-import com.capgemini.scores.league.domain.MatchResult;
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+import com.capgemini.scores.league.view.domain.LeagueTable;
 
 /**
- * Updates a league table.
+ * League table MongoDB repository.
  * 
  * @author craigwilliams84
  *
  */
-public interface LeagueTableUpdater {
+public interface LeagueTableRepository extends MongoRepository<LeagueTable, String> {
     
-    /**
-     * Update the league table based on the provided result.
-     * 
-     * @param result The result.
-     */
-    void updateTable(MatchResult result);
 }

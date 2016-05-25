@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league.integration;
+package com.capgemini.scores.league.view.integration;
 
 import static com.lordofthejars.nosqlunit.mongodb.MongoDbRule.MongoDbRuleBuilder.newMongoDbRule;
 
@@ -29,9 +29,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.capgemini.scores.league.BaseKafkaTest;
-import com.capgemini.scores.league.LeagueTableView;
-import com.capgemini.scores.league.MongoTestConfiguration;
+import com.capgemini.scores.league.view.BaseKafkaTest;
+import com.capgemini.scores.league.view.LeagueTableView;
+import com.capgemini.scores.league.view.MongoTestConfiguration;
 import com.lordofthejars.nosqlunit.annotation.ShouldMatchDataSet;
 import com.lordofthejars.nosqlunit.annotation.UsingDataSet;
 import com.lordofthejars.nosqlunit.core.LoadStrategyEnum;

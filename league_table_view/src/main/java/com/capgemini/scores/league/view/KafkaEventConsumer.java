@@ -1,7 +1,7 @@
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.view;
 
 import com.capgemini.scores.Topics;
-import com.capgemini.scores.league.message.MatchResultEvent;
+import com.capgemini.scores.league.view.message.MatchResultEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

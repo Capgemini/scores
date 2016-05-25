@@ -30,19 +30,13 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.view;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.capgemini.gregor.EnableKafkaConsumers;
-import com.capgemini.scores.league.domain.LeagueTable;
-import com.capgemini.scores.league.domain.repository.LeagueTableRepository;
 
 /**
  * A spring boot based event-sourcing microservice that will eventually consume match result events

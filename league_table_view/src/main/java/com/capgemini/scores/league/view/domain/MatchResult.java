@@ -14,18 +14,47 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league.domain.repository;
-
-import org.springframework.data.mongodb.repository.MongoRepository;
-
-import com.capgemini.scores.league.domain.LeagueTable;
+package com.capgemini.scores.league.view.domain;
 
 /**
- * League table MongoDB repository.
+ * Match result domain object.
  * 
  * @author craigwilliams84
  *
  */
-public interface LeagueTableRepository extends MongoRepository<LeagueTable, String> {
+public class MatchResult {
     
+    String competitionId;
+    
+    String homeTeam;
+    
+    int homeScore;
+    
+    String awayTeam;
+    
+    int awayScore;
+    
+    public MatchResult() {
+        
+    }
+    
+    public String getCompetitionId() {
+        return competitionId;
+    }
+
+    public String getHomeTeam() {
+        return homeTeam;
+    }
+
+    public int getHomeScore() {
+        return homeScore;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
+    }
+
+    public int getAwayScore() {
+        return awayScore;
+    }
 }

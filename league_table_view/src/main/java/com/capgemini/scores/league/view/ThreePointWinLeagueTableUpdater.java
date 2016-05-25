@@ -14,18 +14,16 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
-import com.capgemini.gregor.KafkaConsumer;
-import com.capgemini.gregor.PayloadContent;
-import com.capgemini.scores.league.domain.LeagueTable;
-import com.capgemini.scores.league.domain.LeagueTableEntry;
-import com.capgemini.scores.league.domain.LeagueTeamStatistics;
-import com.capgemini.scores.league.domain.MatchResult;
+import com.capgemini.scores.league.view.domain.LeagueTable;
+import com.capgemini.scores.league.view.domain.LeagueTableEntry;
+import com.capgemini.scores.league.view.domain.LeagueTeamStatistics;
+import com.capgemini.scores.league.view.domain.MatchResult;
 
 /**
  * Updates a league table based on a result, with 3 points for a win.

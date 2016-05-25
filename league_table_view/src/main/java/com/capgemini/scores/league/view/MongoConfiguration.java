@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.view;
 
 import java.net.UnknownHostException;
 import java.util.Arrays;

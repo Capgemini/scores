@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league.domain;
+package com.capgemini.scores.league.view.domain;
 
 import java.util.List;
 

@@ -14,7 +14,7 @@
 * limitations under the License.
 */
 
-package com.capgemini.scores.league;
+package com.capgemini.scores.league.view;
 
 import java.util.Arrays;
 
@@ -24,15 +24,15 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.capgemini.scores.league.domain.LeagueTable;
-import com.capgemini.scores.league.domain.LeagueTableEntry;
-import com.capgemini.scores.league.domain.LeagueTeamStatistics;
-import com.capgemini.scores.league.domain.repository.LeagueTableRepository;
+import com.capgemini.scores.league.view.domain.LeagueTable;
+import com.capgemini.scores.league.view.domain.LeagueTableEntry;
+import com.capgemini.scores.league.view.domain.LeagueTeamStatistics;
+import com.capgemini.scores.league.view.domain.repository.LeagueTableRepository;
 
 /**
  * Creates dummy league data if the capgemini.createdummydata property is set to true
  * 
- * The dummy league has the name "Dummy League", and contains 2 teams, 
+ * The dummy league has the name "DummyLeague", and contains 2 teams,
  * "Tottenham Hotspur" and "Arsenal".
  * 
  * @author craigwilliams84
@@ -49,7 +49,7 @@ public class DummyLeagueDataConfiguration {
     
     private class DummyLeagueDataCreator implements BeanPostProcessor {
 
-        private static final String LEAGUE_NAME = "Dummy League";
+        private static final String LEAGUE_NAME = "DummyLeague";
         
         private static final String TEAM_ONE = "Tottenham Hotspur";
         
