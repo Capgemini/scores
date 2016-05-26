@@ -1,0 +1,7 @@
+kafka:
+  addresses: localhost:9092
+  zookeeper:
+    connect: localhost:2181
+
+server:
+  port: 8080

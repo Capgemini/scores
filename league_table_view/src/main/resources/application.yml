@@ -11,3 +11,6 @@ spring:
       
 capgemini:
   createdummydata: true
+
+server:
+  port: 8084
