@@ -47,6 +47,9 @@ public class BaseKafkaTest {
     public static void startKafka() {
         kafka = new KafkaUnit(ZOOKEEPER_PORT, BROKER_PORT);
         kafka.startup();
+
+        sleep(DEFAULT_WAIT_TIME);
+
         kafka.createTopic(Topics.MATCH_RESULT_COMMAND);
         kafka.createTopic(Topics.CREATE_LEAGUE_TABLE_COMMAND);
         kafka.createTopic(Topics.MATCH_RESULT_EVENT);

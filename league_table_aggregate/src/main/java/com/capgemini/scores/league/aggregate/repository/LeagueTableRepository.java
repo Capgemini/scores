@@ -10,4 +10,6 @@ public interface LeagueTableRepository {
     LeagueTable getLeagueTable(String id);
     
     void save(LeagueTable table);
+
+    void delete(LeagueTable tableToDelete);
 }

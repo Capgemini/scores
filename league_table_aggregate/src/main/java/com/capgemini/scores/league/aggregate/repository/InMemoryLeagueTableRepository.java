@@ -1,9 +1,6 @@
 package com.capgemini.scores.league.aggregate.repository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import org.springframework.stereotype.Component;
 
@@ -13,6 +10,20 @@ import com.capgemini.scores.league.aggregate.domain.LeagueTable;
 public class InMemoryLeagueTableRepository implements LeagueTableRepository {
 
     private Map<String, LeagueTable> tableMap = new HashMap<String, LeagueTable>();
+
+    public InMemoryLeagueTableRepository() {
+        final LeagueTable dummyTable = new LeagueTable();
+        dummyTable.setId("DummyLeague");
+
+        final Set<String> teams = new HashSet<String>();
+
+        teams.add("Tottenham Hotspur");
+        teams.add("Arsenal");
+
+        dummyTable.setTeams(teams);
+
+        tableMap.put("DummyLeague", dummyTable);
+    }
     
     @Override
     public List<LeagueTable> getLeagueTables() {
@@ -27,6 +38,11 @@ public class InMemoryLeagueTableRepository implements LeagueTableRepository {
     @Override
     public void save(LeagueTable table) {
         tableMap.put(table.getId(), table);
+    }
+
+    @Override
+    public void delete(LeagueTable tableToDelete) {
+        tableMap.remove(tableToDelete.getId());
     }
 
 }

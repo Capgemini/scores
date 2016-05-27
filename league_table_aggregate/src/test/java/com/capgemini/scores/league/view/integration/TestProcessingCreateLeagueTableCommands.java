@@ -6,6 +6,7 @@ import com.capgemini.scores.league.aggregate.domain.LeagueTable;
 import com.capgemini.scores.league.aggregate.message.LeagueTableCreatedEvent;
 import com.capgemini.scores.league.aggregate.repository.LeagueTableRepository;
 import com.google.gson.Gson;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +28,17 @@ import static org.junit.Assert.assertNotNull;
         "zookeeper.address=localhost:" + BaseKafkaTest.ZOOKEEPER_PORT})
 public class TestProcessingCreateLeagueTableCommands extends BaseKafkaTest {
 
+    private static final String LEAGUE_ID = "Test League";
+
     @Autowired
     private LeagueTableRepository repository;
 
+    @After
+    public void cleanup() {
+        repository.delete(repository.getLeagueTable(LEAGUE_ID));
+    }
+
     @Test
-    @DirtiesContext
     public void testProcessCreateLeagueTableCommand() throws TimeoutException {
         final String createLeagueTableCommandJson = "{\"leagueTable\"={\"id\":\"Test League\",\"teams\":[\"Arsenal\",\"Tottenham\"],\"results\":[]}}";
 
@@ -39,7 +46,7 @@ public class TestProcessingCreateLeagueTableCommands extends BaseKafkaTest {
 
         pause();
 
-        final LeagueTable leagueTable = repository.getLeagueTable("Test League");
+        final LeagueTable leagueTable = repository.getLeagueTable(LEAGUE_ID);
         assertNotNull("League table has not been saved", leagueTable);
         assertEquals("League table does not have the correct number of teams", 2, leagueTable.getTeams().size());
 

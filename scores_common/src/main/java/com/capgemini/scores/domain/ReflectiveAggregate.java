@@ -3,11 +3,15 @@ package com.capgemini.scores.domain;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 import com.capgemini.scores.message.Command;
 import com.capgemini.scores.message.Event;
 
 public class ReflectiveAggregate implements Aggregate {
+
+    private AtomicLong version = new AtomicLong(0l);
     
     public List<Event> process(Command command) {
 
@@ -15,7 +19,11 @@ public class ReflectiveAggregate implements Aggregate {
 
         try {
             commandHandlerMethod.setAccessible(true);
-            return (List<Event>) commandHandlerMethod.invoke(this, command);
+            final List<Event> resultantEvents = (List<Event>) commandHandlerMethod.invoke(this, command);
+
+            version.incrementAndGet();
+
+            return resultantEvents;
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
@@ -23,6 +31,10 @@ public class ReflectiveAggregate implements Aggregate {
         }
 
         return null;
+    }
+
+    public Long getVersion() {
+        return version.get();
     }
 
     private Method getMethodWithCommandTypeAsArgument(Command command) {

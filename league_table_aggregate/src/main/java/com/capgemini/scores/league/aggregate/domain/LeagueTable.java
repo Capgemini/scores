@@ -62,6 +62,8 @@ public class LeagueTable extends ReflectiveAggregate {
         final MatchResult matchResult = command.getPayload();
         
         validateMatchResult(matchResult);
+
+        matchResult.setCompetitionVersion(getVersion());
         
         results.add(matchResult);
         

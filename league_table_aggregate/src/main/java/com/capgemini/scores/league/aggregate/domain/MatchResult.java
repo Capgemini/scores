@@ -25,6 +25,8 @@ package com.capgemini.scores.league.aggregate.domain;
 public class MatchResult {
     
     String competitionId;
+
+    Long competitionVersion;
     
     String homeTeam;
     
@@ -38,8 +40,10 @@ public class MatchResult {
         
     }
 
-    public MatchResult(String competitionId, String homeTeam, int homeScore, String awayTeam, int awayScore) {
+    public MatchResult(String competitionId, Long competitionVersion,
+                       String homeTeam, int homeScore, String awayTeam, int awayScore) {
         this.competitionId = competitionId;
+        this.competitionVersion = competitionVersion;
         this.homeTeam = homeTeam;
         this.homeScore = homeScore;
         this.awayTeam = awayTeam;
@@ -64,6 +68,14 @@ public class MatchResult {
 
     public int getAwayScore() {
         return awayScore;
+    }
+
+    public Long getCompetitionVersion() {
+        return competitionVersion;
+    }
+
+    public void setCompetitionVersion(Long competitionVersion) {
+        this.competitionVersion = competitionVersion;
     }
 
     @Override
