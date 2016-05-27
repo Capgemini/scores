@@ -32,16 +32,28 @@ public class LeagueTable {
     
     @Id
     private String name;
+
+    private Long version;
     
     private List<LeagueTableEntry> entries;
     
     public LeagueTable(String name, List<LeagueTableEntry> entries) {
         this.name = name;
         this.entries = entries;
+
+        version = new Long(0l);
     }
     
     public String getName() {
         return name;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
     
     public List<LeagueTableEntry> getEntries() {

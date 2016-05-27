@@ -25,6 +25,8 @@ package com.capgemini.scores.league.view.domain;
 public class MatchResult {
     
     String competitionId;
+
+    Long competitionVersion;
     
     String homeTeam;
     
@@ -56,5 +58,9 @@ public class MatchResult {
 
     public int getAwayScore() {
         return awayScore;
+    }
+
+    public Long getCompetitionVersion() {
+        return competitionVersion;
     }
 }

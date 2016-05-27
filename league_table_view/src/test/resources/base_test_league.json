@@ -2,6 +2,7 @@
     "leagueTable": [
         {
             "_id": "Test League",
+            "version": 0,
             "entries": [ { "teamName" : "Tottenham Hotspur", "totalPoints" : 0, "statistics" : { "goalsScored" : 0, "goalsConceded" : 0, "wins" : 0, "draws" : 0, "losses" : 0 }},
 			             { "teamName" : "Arsenal", "totalPoints" : 0, "statistics" : { "goalsScored" : 0, "goalsConceded" : 0, "wins" : 0, "draws" : 0, "losses" : 0 }} ]
         }

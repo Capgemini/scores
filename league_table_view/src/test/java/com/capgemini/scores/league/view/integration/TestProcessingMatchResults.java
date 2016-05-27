@@ -45,7 +45,7 @@ import com.mongodb.Mongo;
 @Import(MongoTestConfiguration.class)
 public class TestProcessingMatchResults extends BaseKafkaTest {
     
-    private static final String MESSAGE_VALUE = "{matchResult: {\"competitionId\": \"Test League\",\"homeTeam\": \"Tottenham Hotspur\",\"homeScore\": 5,\"awayTeam\": \"Arsenal\",\"awayScore\": 1}}";
+    private static final String MESSAGE_VALUE = "{matchResult: {\"competitionId\": \"Test League\",\"competitionVersion\": 1,\"homeTeam\": \"Tottenham Hotspur\",\"homeScore\": 5,\"awayTeam\": \"Arsenal\",\"awayScore\": 1}}";
     
     //Required by nosql-unit
     @Autowired 

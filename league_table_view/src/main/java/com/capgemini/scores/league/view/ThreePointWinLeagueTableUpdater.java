@@ -52,13 +52,30 @@ public class ThreePointWinLeagueTableUpdater implements LeagueTableUpdater {
     public void updateTable(MatchResult result) {
         final LeagueTable table = repository.findOne(result.getCompetitionId());
         
-        if (table != null) {
-            updateTable(table, result.getHomeTeam(), result.getHomeScore(), result.getAwayScore());
-            
-            updateTable(table, result.getAwayTeam(), result.getAwayScore(), result.getHomeScore());
+        if (shouldApplyMatchResult(table, result)) {
+
+            updateTable(table, result);
+
+            repository.save(table);
+        } else {
+            //TODO Logging
         }
-        
-        repository.save(table);
+    }
+
+    private boolean shouldApplyMatchResult(LeagueTable table, MatchResult result) {
+        if (table.getVersion() > result.getCompetitionVersion()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private void updateTable(LeagueTable table, MatchResult result) {
+        updateTable(table, result.getHomeTeam(), result.getHomeScore(), result.getAwayScore());
+
+        updateTable(table, result.getAwayTeam(), result.getAwayScore(), result.getHomeScore());
+
+        table.setVersion(result.getCompetitionVersion());
     }
 
     private void updateTable(LeagueTable table, String teamName, int goalsFor, int goalsAgainst) {
